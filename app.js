@@ -6,6 +6,8 @@ app.use(express.json())
 
 const sequelize = new Sequelize(process.env.DATABASE_URL)
 
+const env = process.env.ENV;
+
 app.get("/", function (req, res) {
   res.send(`Hello World! Environnement de ${env}`)
 })
