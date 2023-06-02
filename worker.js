@@ -13,6 +13,12 @@ workQueue.process(async (job) => {
     `Exécution du job de mise à jour du statut du ToDo ${job.data.idTodo} qui arrive à écheance le ${job.data.dateEcheance}`
   )
   try {
+    await sequelize.query(
+      `UPDATE todos SET statut = 'EN RETARD' WHERE id = ?`,
+      {
+        replacements: [job.data.idTodo]
+      }
+    )
     // Il manque quelque chose ici...  A vous de l'ajouter !
     // Indice : vous aurez besoin de await sequelize.query(...)
   } catch (error) {
